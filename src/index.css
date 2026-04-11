@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+#root {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to top,
+    #051518,
+    #061518,
+    #071618,
+    #091618,
+    #0a1618,
+    #0b1417,
+    #0b1316,
+    #0c1115,
+    #0c0d11,
+    #0a080c,
+    #060405,
+    #000000
+  );
+}
+
+body {
+  color: #00ef9f;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Cube faces */
+.cube-face {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  color: cyan;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Position faces */
+.front  { transform: rotateY(0deg) translateZ(80px); }
+.back   { transform: rotateY(180deg) translateZ(80px); }
+.right  { transform: rotateY(90deg) translateZ(80px); }
+.left   { transform: rotateY(-90deg) translateZ(80px); }
+.top    { transform: rotateX(90deg) translateZ(80px); }
+.bottom { transform: rotateX(-90deg) translateZ(80px); }
