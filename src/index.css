@@ -21,6 +21,7 @@ html,
     #060405,
     #000000
   );
+  scroll-behavior: smooth;
 }
 
 body {
@@ -54,9 +55,21 @@ body {
 }
 
 /* Position faces */
-.front  { transform: rotateY(0deg) translateZ(80px); }
-.back   { transform: rotateY(180deg) translateZ(80px); }
-.right  { transform: rotateY(90deg) translateZ(80px); }
-.left   { transform: rotateY(-90deg) translateZ(80px); }
-.top    { transform: rotateX(90deg) translateZ(80px); }
-.bottom { transform: rotateX(-90deg) translateZ(80px); }
+.front {
+  transform: rotateY(0deg) translateZ(80px);
+}
+.back {
+  transform: rotateY(180deg) translateZ(80px);
+}
+.right {
+  transform: rotateY(90deg) translateZ(80px);
+}
+.left {
+  transform: rotateY(-90deg) translateZ(80px);
+}
+.top {
+  transform: rotateX(90deg) translateZ(80px);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(80px);
+}

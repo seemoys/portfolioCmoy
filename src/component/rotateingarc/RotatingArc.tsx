@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { useScreenSize } from '../../utils/screenSize'
 
 gsap.registerPlugin(useGSAP)
 
@@ -12,15 +13,12 @@ const SKILLS = [
   'TypeScript',
   'MySQL',
   'REST APIs',
-  'Tailwind CSS',
+  'Tailwind',
   'Redux',
   'Zustand',
-  'Git',
-  'Performance'
+  'Git'
 ]
 
-
-const RADIUS = 150
 const SKILL_COUNT = SKILLS.length
 
 function RotatingArc() {
@@ -30,27 +28,28 @@ function RotatingArc() {
   const angleRef = useRef(0)
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const screenSize = useScreenSize()
+
+  const RADIUS = screenSize === 'mobile' ? 90: screenSize === 'tablet' ? 125 : 175
+
   useGSAP(
     () => {
       gsap.to(angleRef, {
-        current: 360, // clockwise
+        current: 360,
         duration: SKILL_COUNT * 1.25,
         repeat: -1,
         ease: 'none',
         onUpdate: () => {
           const angle = angleRef.current
 
-          // Rotate the arc group clockwise
           if (arcGroupRef.current) {
             arcGroupRef.current.style.transform = `rotate(${angle}deg)`
           }
 
-          // Counter-rotate each label so text stays upright
           labelRefs.current.forEach((el) => {
             if (el) el.style.transform = `rotate(${-angle}deg)`
           })
 
-          // Highlight the skill closest to the 9-o'clock position (270deg = leftmost visible)
           const normalized = ((angle % 360) + 360) % 360
           let minDiff = Infinity
           let idx = 0
@@ -70,20 +69,34 @@ function RotatingArc() {
     { scope: containerRef }
   )
 
+  // mobile + tablet: below the navbar, half-arc at right screen edge
+  const topStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: '56px',
+    right: -RADIUS,
+    width: RADIUS * 2,
+    height: RADIUS * 2,
+    zIndex: 10,
+    pointerEvents: 'none',
+  }
+
+  // desktop (lg+): vertically centered, half-arc at right screen edge
+  const desktopStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: '50%',
+    right: -RADIUS,
+    transform: 'translateY(-50%)',
+    width: RADIUS * 2,
+    height: RADIUS * 2,
+    zIndex: 10,
+    pointerEvents: 'none',
+  }
+
   return (
     <div
       ref={containerRef}
-      className="hidden lg:block"
-      style={{
-        position: 'fixed',
-        right: -RADIUS, // center of circle sits on the right screen edge
-        top: '50%',
-        transform: 'translateY(-50%)',
-        width: RADIUS * 2,
-        height: RADIUS * 2,
-        zIndex: 10,
-        pointerEvents: 'none',
-      }}
+      className="block"
+      style={screenSize === 'desktop' ? desktopStyle : topStyle}
     >
       {/* Static arc ring */}
       <div
@@ -108,7 +121,6 @@ function RotatingArc() {
         {SKILLS.map((skill, i) => {
           const angle = (i / SKILL_COUNT) * 360
           const rad = (angle * Math.PI) / 180
-          // 0deg = top (12 o'clock), going clockwise
           const x = RADIUS + RADIUS * Math.sin(rad)
           const y = RADIUS - RADIUS * Math.cos(rad)
           const isActive = i === activeIndex
@@ -123,14 +135,12 @@ function RotatingArc() {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <span 
-                ref={(el) => {
-                  labelRefs.current[i] = el
-                }}
+              <span
+                ref={(el) => { labelRefs.current[i] = el }}
                 style={{
-                  fontFamily:'fangsong',
+                  fontFamily: 'fangsong',
                   display: 'inline-block',
-                  padding: '4px 14px',
+                  padding: '3px 10px',
                   borderRadius: 999,
                   fontSize: isActive ? '0.9rem' : '0.72rem',
                   fontWeight: isActive ? 700 : 500,
