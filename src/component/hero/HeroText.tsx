@@ -55,7 +55,13 @@ function HeroText() {
           text="Hire Me"
           href="https://mail.google.com/mail/?view=cm&to=seemoys@gmail.com&su=Hire Me"
         />
-        <Button text="CV" variant="secondary" />
+        <Button
+          text="CV"
+          href="/Seemoys_CV.pdf"
+          variant="secondary"
+          download
+          fileName="Seemoys_CV.pdf"
+        />
       </div>
 
       <motion.div
