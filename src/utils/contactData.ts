@@ -20,7 +20,7 @@ export const contactCards = [
   {
     icon: Mail,
     title: 'Email',
-    text: 'seemoys@gmail.com',
+    text: import.meta.env.VITE_EMAIL_USER as string,
     iconClass: 'bg-cyan-400/10 text-cyan-300',
   },
   {

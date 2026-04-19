@@ -4,6 +4,7 @@ import Button from '../button/Button'
 import { heroContent, heroSocials, heroTypeSequence } from '../../utils/heroData'
 import { socialContainer, socialItem } from '../../utils/heroFunctions'
 
+
 function HeroText() {
   return (
     <div>
@@ -53,7 +54,7 @@ function HeroText() {
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:gap-4">
         <Button
           text="Hire Me"
-          href="https://mail.google.com/mail/?view=cm&to=seemoys@gmail.com&su=Hire Me"
+          href="https://mail.google.com/mail/?view=cm&to=${import.meta.env.VITE_EMAIL_USER}&su=Hire Me"
         />
         <Button
           text="CV"

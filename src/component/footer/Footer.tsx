@@ -16,8 +16,8 @@ const socials = [
   },
   {
     icon: Mail,
-    label: 'seemoys@gmail.com',
-    href: 'mailto:seemoys@gmail.com',
+    label: import.meta.env.VITE_EMAIL_USER as string,
+    href: `mailto:${import.meta.env.VITE_EMAIL_USER}`,
     external: false,
   },
 ]
