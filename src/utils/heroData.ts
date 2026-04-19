@@ -4,7 +4,7 @@ import heroImg2 from '../assets/heroImg2.png'
 
 export const heroContent = {
   greeting: 'Hi, I am',
-  name: 'Seemoy Shome Sanu',
+  name: 'Seemoy Shome',
   summary:
     'React.js Developer with 3+ years of experience building scalable, high-performance web applications using React, Node.js, Express, PHP, and MySQL-focused on performance optimization and real-world impact.',
   highlights: [
