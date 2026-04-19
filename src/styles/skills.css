@@ -259,9 +259,9 @@
   }
 
   .lane-label {
-    left: 0.7rem;
-    top: 0.65rem;
-    padding: 0.35rem 0.6rem;
+    left: 0.3rem;
+    top: 0.4rem;
+    padding: 0.4rem 0.4rem;
   }
 
   .lane-label span {

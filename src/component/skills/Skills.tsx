@@ -33,7 +33,7 @@ function Skills() {
       </motion.div>
 
       <div className="skills-shell">
-        <div className="skills-top">
+        <div className="skills-top mt-4 flex flex-col items-center text-center md:flex-row md:items-start md:text-left">
           <span>Designing interfaces</span>
           <span>Building interactions</span>
           <span>Shipping products</span>
