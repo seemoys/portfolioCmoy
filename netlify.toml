@@ -3,4 +3,3 @@
 
 [secrets_scanning]
   omit_paths = ["public/Seemoys_CV.pdf"]
-  omit_keys = ["EMAIL_USER"]
